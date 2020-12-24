@@ -7,7 +7,6 @@ import java.sql.Statement;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
-
 public class LambdaClass implements RequestHandler<RequestDetails, ResponseDetails>
 {
     public ResponseDetails handleRequest(RequestDetails requestDetails, Context arg1) {
@@ -35,7 +34,7 @@ public class LambdaClass implements RequestHandler<RequestDetails, ResponseDetai
         if(1 == responseCode)
         {
             responseDetails.setMessageID(String.valueOf(responseCode));
-            responseDetails.setMessageReason("Successfully updated details to database in AWS");
+            responseDetails.setMessageReason("Successfully updated details to database in RDS AWS");
         }
 
     }
