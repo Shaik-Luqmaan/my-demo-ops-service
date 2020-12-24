@@ -17,14 +17,18 @@ public class LambdaClass implements RequestHandler<RequestDetails, ResponseDetai
         try {
             insertDetails(requestDetails, responseDetails);
         } catch (SQLException sqlException) {
-            responseDetails.setMessageID("999");
-            responseDetails.setMessageReason("Unable to Registor "+sqlException);
-        }
+            responseDetails.setMessageID("99");
+            responseDetails.setMessageReason("Unable to Register  "+sqlException);
+        } catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         return responseDetails;
     }
 
-    private void insertDetails(RequestDetails requestDetails, ResponseDetails responseDetails) throws SQLException {
-        Connection connection = getConnection();
+    private void insertDetails(RequestDetails requestDetails, ResponseDetails responseDetails) throws SQLException, ClassNotFoundException {
+    	
+    	Connection connection = getConnection();
         Statement statement = connection.createStatement();
         String query = getquery(requestDetails);
         int responseCode = statement.executeUpdate(query);
@@ -47,11 +51,12 @@ public class LambdaClass implements RequestHandler<RequestDetails, ResponseDetai
         return query;
     }
 
-    private Connection getConnection() throws SQLException {
+    private Connection getConnection() throws SQLException, ClassNotFoundException {
         // TODO Auto-generated method stub
         String url = "jdbc:mysql://db-retool.cymonduqvooq.us-east-2.rds.amazonaws.com:3306";
         String user = System.getenv("databaseUser");
         String password = System.getenv("databasePassword");
+        Class.forName("com.mysql.jdbc.Driver");
         Connection conn = DriverManager.getConnection(url, user, password);
         return conn;
 
