@@ -35,7 +35,7 @@ public class LambdaClass implements RequestHandler<RequestDetails, ResponseDetai
         if(1 == responseCode)
         {
             responseDetails.setMessageID(String.valueOf(responseCode));
-            responseDetails.setMessageReason("Successfully updated details to AWS RDS. Yohoooo!!!");
+            responseDetails.setMessageReason("Successfully updated details to AWS RDS yay!!");
         }
 
     }
